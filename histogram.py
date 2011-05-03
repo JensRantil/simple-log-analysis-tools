@@ -37,13 +37,12 @@ class Histogram:
 
 
 def main(argv = sys.argv):
-	# detects whether have pipe line parsing in
-	if not sys.stdin.isatty():
-		h = Histogram()
-		for s in sys.stdin:
-			s = s.strip("\n\r")
-			h.add(s)
-		h.stdout()
+	"""The main(...) function responsible for initial execution."""
+	h = Histogram()
+	for s in sys.stdin:
+		s = s.strip("\n\r")
+		h.add(s)
+	h.write()
 
 
 if __name__=="__main__":
