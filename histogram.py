@@ -36,8 +36,3 @@ def main(argv = sys.argv):
 if __name__=="__main__":
 	main()
 
-#h = Histogram()
-#h.add("a", 5)
-#h.add("b", 10)
-#h.stdout()
-
