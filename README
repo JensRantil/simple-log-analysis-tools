@@ -1,3 +1,0 @@
-A set of small tools useful for various log analysis.
-
-histogram.py   -- generates an ASCII histogram based on row frequency.
