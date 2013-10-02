@@ -6,7 +6,6 @@ See 'python ./cache_simulator.py --help' for information on how to run.
 @author: Jens Rantil <jens.rantil@telavox.se>
 '''
 import sys
-import itertools
 from optparse import OptionParser
 import datetime
 from time import mktime
