@@ -1,3 +1,4 @@
+#! /usr/bin/env python
 '''A simple cache simulator.
 
 See 'python ./cache_simulator.py --help' for information on how to run.
