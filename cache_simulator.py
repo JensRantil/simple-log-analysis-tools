@@ -6,7 +6,7 @@ See 'python ./cache_simulator.py --help' for information on how to run.
 @author: Jens Rantil <jens.rantil@telavox.se>
 '''
 import sys
-from optparse import OptionParser
+from argparse import ArgumentParser
 import datetime
 from time import mktime
 import time
@@ -242,32 +242,31 @@ def command_line_parser():
     
     >>> a = command_line_parser()
     """
-    USAGE = "%prog [options] -f <infile1> -f <infile2> ... -f <infileN>"
     DESCRIPTION = "A simple cache simulator."
-    parser = OptionParser(usage=USAGE, description=DESCRIPTION)
-    parser.add_option('-t', '--ttl', default=DEFAULT_TTL, type='int',
-                      help="Time to live before a cached value is expired (in"
-                           " seconds). Default is %d." % DEFAULT_TTL)
-    parser.add_option('-f', '--inputfile', dest="inputfiles", action="append",
-                      help="An input file consisting of one event per line."
-                           " Each line starts with a date, followed by a"
-                           " separator and a cache key. If no input file is"
-                           " specified stdin is expected.")
-    parser.add_option('-s', '--separator', default=DEFAULT_SEPARATOR,
-                      help="The separator to use between the date and the key."
-                           " Defaults to '%s'." % DEFAULT_SEPARATOR)
-    parser.add_option('-d', '--dateformat', default=DEFAULT_DATE_FORMAT,
-                      help="Date format (default=%s). See"
-                           " http://docs.python.org/library/datetime.html for"
-                           " information about the date format markup"
-                           " language." % DEFAULT_DATE_FORMAT)
+    parser = ArgumentParser(description=DESCRIPTION)
+    parser.add_argument('-t', '--ttl', default=DEFAULT_TTL, type=int,
+                        help="Time to live before a cached value is expired (in"
+                             " seconds). Default is %d." % DEFAULT_TTL)
+    parser.add_argument("inputfiles", nargs='*',
+                        help="An input file consisting of one event per line."
+                             " Each line starts with a date, followed by a"
+                             " separator and a cache key. If no input file is"
+                             " specified stdin is expected.")
+    parser.add_argument('-s', '--separator', default=DEFAULT_SEPARATOR,
+                        help="The separator to use between the date and the key."
+                             " Defaults to '%s'." % DEFAULT_SEPARATOR)
+    parser.add_argument('-d', '--dateformat', default=DEFAULT_DATE_FORMAT,
+                        help="Date format (default=%s). See"
+                             " http://docs.python.org/library/datetime.html for"
+                             " information about the date format markup"
+                             " language." % DEFAULT_DATE_FORMAT)
     return parser
 
 
 def main(argv):
     """Parse the input to the cache simulator and executes the program.
     
-    >>> main(['./cache_simulator.py', '-d', '%d/%b/%Y:%H:%M:%S', '-f', '../resources/sample_log.txt'])
+    >>> main(['./cache_simulator.py', '-d', '%d/%b/%Y:%H:%M:%S', '../resources/sample_log.txt'])
     FINAL STATISTICS:
     ==============================
     Total gets: 29
@@ -277,13 +276,9 @@ def main(argv):
     ==============================
     0
     """
-    options, args = command_line_parser().parse_args(argv)
+    options = command_line_parser().parse_args(argv[1:])
     if not options.inputfiles:
         options.inputfiles = ['-']
-    if args[1:]:
-        print args
-        parser.print_help()
-        return 1
     return run(options)
 
 
