@@ -14,4 +14,4 @@ Used to simulate how a cache could improve performance given a list of
 
 Author
 ------
-Jens Rantil, <jens.rantil@gmail.com>
+Jens Rantil, <jens.rantil@gmail.com>.
