@@ -226,7 +226,7 @@ def run(options):
                 stats.register_hit()
             stats.register_size(cache.size)
     except IOError, e:
-        print "Could not open a file: %s", e.message
+        print "Could not open a file.", e
         return 1
     finally:
         for f in inputfiles:
