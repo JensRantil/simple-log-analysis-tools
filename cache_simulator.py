@@ -266,7 +266,7 @@ def command_line_parser():
 def main(argv):
     """Parse the input to the cache simulator and executes the program.
     
-    >>> main(['./cache_simulator.py', '-d', '%d/%b/%Y:%H:%M:%S', '../resources/sample_log.txt'])
+    >>> main(['./cache_simulator.py', '-d', '%d/%b/%Y:%H:%M:%S', './resources/sample_log.txt'])
     FINAL STATISTICS:
     ==============================
     Total gets: 29
